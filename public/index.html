@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦝 Lenny Penny's Burrow Monitor</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-paw"></i>
+                <h1>Lenny Penny's Burrow Monitor</h1>
+                <div class="status-indicator" id="statusIndicator">
+                    <div class="pulse"></div>
+                    <span>OFFLINE</span>
+                </div>
+            </div>
+            <div class="header-controls">
+                <button id="startBtn" class="btn btn-success">
+                    <i class="fas fa-play"></i> Start Monitoring
+                </button>
+                <button id="stopBtn" class="btn btn-danger" disabled>
+                    <i class="fas fa-stop"></i> Stop
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Dashboard -->
+        <main class="dashboard">
+            <!-- Live Stream Section -->
+            <section class="stream-section">
+                <div class="stream-container">
+                    <div class="stream-header">
+                        <h2><i class="fas fa-video"></i> Live Webcam Feed</h2>
+                        <div class="stream-info">
+                            <span id="fps">0 FPS</span>
+                            <span id="resolution">AI Detection</span>
+                        </div>
+                    </div>
+                    <div class="video-container">
+                        <canvas id="videoCanvas" width="640" height="480"></canvas>
+                        <div class="detection-overlay" id="detectionOverlay"></div>
+                        <div class="stream-placeholder" id="streamPlaceholder">
+                            <i class="fas fa-camera"></i>
+                            <p>Click "Start Monitoring" to begin</p>
+                            <p class="subtitle">Enable webcam access for real-time detection</p>
+                            <p class="subtitle">🎯 Mock AI detection (TensorFlow.js coming soon!)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Panel -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card animate-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalDetections">0</h3>
+                            <p>Total Detections</p>
+                        </div>
+                        <div class="stat-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                    </div>
+
+                    <div class="stat-card animate-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="animalCount">0</h3>
+                            <p>Animals Spotted</p>
+                        </div>
+                        <div class="stat-trend">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+
+                    <div class="stat-card animate-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-percent"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="confidence">0%</h3>
+                            <p>Avg Confidence</p>
+                        </div>
+                        <div class="stat-trend">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                    </div>
+
+                    <div class="stat-card animate-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="uptime">00:00</h3>
+                            <p>Monitoring Time</p>
+                        </div>
+                        <div class="stat-trend">
+                            <i class="fas fa-stopwatch"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Animal Detection Panel -->
+            <section class="detection-section">
+                <div class="detection-panel">
+                    <div class="panel-header">
+                        <h2><i class="fas fa-search"></i> Recent Detections</h2>
+                        <div class="detection-filter">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="rabbit">🐰 Rabbits</button>
+                            <button class="filter-btn" data-filter="mouse">🐭 Mice</button>
+                            <button class="filter-btn" data-filter="cat">🐱 Cats</button>
+                            <button class="filter-btn" data-filter="bird">🐦 Birds</button>
+                            <button class="filter-btn" data-filter="squirrel">🐿️ Squirrels</button>
+                        </div>
+                    </div>
+                    <div class="detections-list" id="detectionsList">
+                        <div class="no-detections">
+                            <i class="fas fa-search"></i>
+                            <p>No animals detected yet...</p>
+                            <p class="subtitle">Start monitoring to see Lenny Penny's friends!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Activity Chart -->
+            <section class="chart-section">
+                <div class="chart-container">
+                    <h2><i class="fas fa-chart-line"></i> Activity Timeline</h2>
+                    <div class="chart" id="activityChart">
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-area"></i>
+                            <p>Activity data will appear here once monitoring starts</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Floating Lenny Penny Character -->
+        <div class="lenny-character" id="lennyCharacter">
+            <div class="character-body">
+                <div class="character-face">
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                    <div class="nose"></div>
+                    <div class="mouth"></div>
+                </div>
+                <div class="character-ears">
+                    <div class="ear left"></div>
+                    <div class="ear right"></div>
+                </div>
+            </div>
+            <div class="speech-bubble" id="speechBubble">
+                <p>Ready to monitor the burrow! 🏠</p>
+            </div>
+        </div>
+
+        <!-- Notification Toast -->
+        <div class="toast" id="toast">
+            <div class="toast-content">
+                <i class="fas fa-info-circle"></i>
+                <span id="toastMessage">Notification</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
