@@ -1,22 +1,24 @@
-# 🦝 Lennox ISTEM - Lenny Penny Burrow Monitor
+# � Lennox ISTEM - Lenny Penny Australian Wildlife Monitor
 
-An advanced AI-powered webcam monitoring system that detects animals in real-time using TensorFlow.js and displays them on a beautiful animated dashboard featuring Lenny Penny the raccoon!
+An advanced AI-powered webcam monitoring system that detects native Australian animals in real-time using TensorFlow.js and displays them on a beautiful animated dashboard featuring Lenny Penny with authentic Aussie slang!
 
-![Lenny Penny](https://img.shields.io/badge/Lenny%20Penny-🦝-brightgreen)
-![TensorFlow.js](https://img.shields.io/badge/TensorFlow.js-AI%20Detection-orange)
+![Lenny Penny](https://img.shields.io/badge/Lenny%20Penny-�-brightgreen)
+![TensorFlow.js](https://img.shields.io/badge/TensorFlow.js-AI%20Wildlife%20Detection-orange)
 ![Node.js](https://img.shields.io/badge/Node.js-Server-green)
 ![Real-time](https://img.shields.io/badge/Real--time-Webcam%20Stream-blue)
+![Australian](https://img.shields.io/badge/Australian-Wildlife-gold)
 
 ## ✨ Features
 
 - 🎥 **Real-time Webcam Monitoring** - Live video feed from your camera
-- 🤖 **AI Object Detection** - TensorFlow.js COCO-SSD model for animal detection
-- 🦝 **Lenny Penny Character** - Animated mascot with interactive speech bubbles
+- � **AI Australian Wildlife Detection** - TensorFlow.js with Australian animal mapping
+- 🗣️ **Lenny Penny Character** - Animated mascot with authentic Aussie slang and phrases
 - 📊 **Live Statistics** - Detection counts, confidence scores, and uptime tracking
 - 🎨 **Beautiful Dashboard** - Fully animated CSS interface with particle effects
 - 🔄 **Real-time Communication** - Socket.IO for instant updates
 - 📱 **Responsive Design** - Works on desktop and mobile devices
 - ✨ **Visual Effects** - Sparkles, animations, and detection overlays
+- 🇦🇺 **Australian Animals** - Detects kangaroos, koalas, wombats, dingoes, and more!
 
 ## 🚀 Quick Start
 
@@ -35,16 +37,17 @@ curl -sSL https://raw.githubusercontent.com/recurser-dev/lennox-istem/main/insta
 
 **That's it!** The installer will:
 - 📁 Create an "ISTEM" folder on your Desktop
-- 🦝 Download Lenny Penny project
+- � Download Lenny Penny Wildlife Monitor project
 - 🔧 Install all required software
 - 🚀 Set up VS Code with extensions
 - ✨ Create a desktop launcher
 
 ### After Installation
 
-1. **Double-click** `🦝 Launch Lenny Penny.command` on your Desktop
+1. **Double-click** `� Launch Aussie Wildlife Monitor.command` on your Desktop
 2. **Allow webcam access** when prompted
 3. **Click "Start Monitoring"** and watch the magic! ✨
+4. **G'day!** Listen to Lenny Penny's authentic Aussie commentary!
 
 ### 🔧 Troubleshooting
 

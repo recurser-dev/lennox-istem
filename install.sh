@@ -59,22 +59,22 @@ cat << "EOF"
 EOF
 
 echo -e "${CYAN}${BOLD}"
-animate_text "    🦝 LENNY PENNY AI ANIMAL DETECTOR 🦝" 0.05
-echo -e "${WHITE}${BOLD}    ═══════════════════════════════════════"
-echo -e "${YELLOW}    Real-time Webcam • AI Detection • STEM Education"
+animate_text "    � LENNY PENNY AUSTRALIAN WILDLIFE DETECTOR �" 0.05
+echo -e "${WHITE}${BOLD}    ════════════════════════════════════════════════"
+echo -e "${YELLOW}    Real-time Webcam • AI Detection • Aussie Animals"
 echo -e "${NC}\n"
 
 sleep 1
 
 # Flashy feature showcase
-echo -e "${PURPLE}${BOLD}✨ FEATURES INCLUDED:${NC}"
+echo -e "${PURPLE}${BOLD}✨ AUSTRALIAN FEATURES INCLUDED:${NC}"
 echo -e "${GREEN}  🎥 Real-time webcam monitoring"
-echo -e "  🤖 TensorFlow.js AI object detection"
-echo -e "  🦝 Interactive Lenny Penny character"
-echo -e "  📊 Live statistics and history"
+echo -e "  🤖 TensorFlow.js AI wildlife detection"
+echo -e "  � Interactive Lenny Penny character with Aussie slang"
+echo -e "  📊 Live statistics and animal history"
 echo -e "  ✨ Beautiful animations and effects"
 echo -e "  💻 VS Code integration with extensions"
-echo -e "  🚀 One-click desktop launcher${NC}\n"
+echo -e "  🇦🇺 Native Australian animal detection${NC}\n"
 
 sleep 2
 
@@ -307,14 +307,14 @@ else
     LAUNCHER_DIR="$ISTEM_DIR"
 fi
 
-cat > "$LAUNCHER_DIR/🦝 Launch Lenny Penny.command" << EOF
+cat > "$LAUNCHER_DIR/� Launch Aussie Wildlife Monitor.command" << EOF
 #!/bin/bash
 cd "$PROJECT_DIR"
 clear
 
 echo -e "\033[0;35m"
-echo "  🦝 LENNY PENNY BURROW MONITOR 🦝"
-echo "  ================================="
+echo "  � LENNY PENNY AUSTRALIAN WILDLIFE MONITOR �"
+echo "  =============================================="
 echo -e "\033[0m"
 echo "📍 Location: \$(pwd)"
 echo "🕐 Time: \$(date)"
@@ -337,9 +337,9 @@ echo "🌐 Opening browser..."
 open http://localhost:3000
 
 echo ""
-echo -e "\033[0;32m✅ Lenny Penny is ready!\033[0m"
+echo -e "\033[0;32m✅ Lenny Penny's Wildlife Monitor is ready!\033[0m"
 echo "📱 Dashboard: http://localhost:3000"
-echo "🦝 Start monitoring to detect animals!"
+echo "� Start monitoring to detect Australian wildlife!"
 echo "⏹️  To stop: Close this window or press Ctrl+C"
 echo ""
 
@@ -347,17 +347,17 @@ echo ""
 wait \$SERVER_PID
 EOF
 
-chmod +x "$LAUNCHER_DIR/🦝 Launch Lenny Penny.command"
+chmod +x "$LAUNCHER_DIR/� Launch Aussie Wildlife Monitor.command"
 echo -e "${GREEN}✅ Desktop launcher created!${NC}"
 echo ""
 
 # Step 10: Create instructions file
 echo -e "${YELLOW}📋 Creating instruction manual...${NC}"
 cat > "$ISTEM_DIR/📋 HOW TO USE.txt" << EOF
-🦝 LENNY PENNY BURROW MONITOR - COMPLETE GUIDE
+� LENNY PENNY AUSTRALIAN WILDLIFE MONITOR - COMPLETE GUIDE
 
 🚀 QUICK START:
-1. Double-click "🦝 Launch Lenny Penny.command" to start
+1. Double-click "� Launch Aussie Wildlife Monitor.command" to start
 2. Allow webcam access when your browser prompts
 3. Click "Start Monitoring" in the dashboard
 4. Watch Lenny Penny detect animals in real-time!
@@ -429,19 +429,19 @@ echo -e "${PURPLE}${BOLD}╚═════════════════�
 
 echo -e "${CYAN}${BOLD}📁 FILES CREATED:${NC}"
 if [ "$LAUNCHER_DIR" = "$HOME/Desktop" ]; then
-    echo -e "${GREEN}  🦝 Launch Lenny Penny.command  ${BLUE}(Desktop)${NC}"
+    echo -e "${GREEN}  � Launch Aussie Wildlife Monitor.command  ${BLUE}(Desktop)${NC}"
 else
-    echo -e "${GREEN}  🦝 Launch Lenny Penny.command  ${BLUE}($LAUNCHER_DIR)${NC}"
+    echo -e "${GREEN}  � Launch Aussie Wildlife Monitor.command  ${BLUE}($LAUNCHER_DIR)${NC}"
 fi
 echo -e "${GREEN}  📁 ISTEM/                      ${BLUE}($ISTEM_DIR)${NC}"
 echo -e "${GREEN}  📋 HOW TO USE.txt              ${BLUE}(Complete guide)${NC}"
 echo ""
 
 echo -e "${YELLOW}${BOLD}🚀 QUICK START INSTRUCTIONS:${NC}"
-echo -e "${WHITE}  1. ${BLUE}Double-click${NC} 🦝 Launch Lenny Penny.command"
+echo -e "${WHITE}  1. ${BLUE}Double-click${NC} � Launch Aussie Wildlife Monitor.command"
 echo -e "${WHITE}  2. ${BLUE}Allow webcam access${NC} when browser prompts"
 echo -e "${WHITE}  3. ${BLUE}Click 'Start Monitoring'${NC} in the dashboard"
-echo -e "${WHITE}  4. ${BLUE}Watch the magic${NC} as AI detects animals! ✨"
+echo -e "${WHITE}  4. ${BLUE}Watch the magic${NC} as AI detects Australian wildlife! ✨"
 echo ""
 
 echo -e "${PURPLE}🎯 FEATURES READY:${NC}"
@@ -464,12 +464,12 @@ sleep 2
 # Final launch prompt with extra style
 echo -e "${YELLOW}${BOLD}${BLINK}🌟 READY FOR LAUNCH! 🌟${NC}"
 echo ""
-read -p "$(echo -e ${GREEN}${BOLD}🦝 Start Lenny Penny now and begin detecting animals? [Y/n]: ${NC})" -n 1 -r
+read -p "$(echo -e ${GREEN}${BOLD}� Start Wildlife Monitor now and begin detecting Aussie animals? [Y/n]: ${NC})" -n 1 -r
 echo
 
 if [[ ! $REPLY =~ ^[Nn]$ ]]; then
     echo ""
-    echo -e "${GREEN}${BOLD}🚀 LAUNCHING LENNY PENNY... 🚀${NC}"
+    echo -e "${GREEN}${BOLD}🚀 LAUNCHING WILDLIFE MONITOR... 🚀${NC}"
     echo -e "${BLUE}Starting server and opening browser...${NC}"
     
     cd "$PROJECT_DIR"
@@ -478,13 +478,13 @@ if [[ ! $REPLY =~ ^[Nn]$ ]]; then
     open http://localhost:3000
     
     echo ""
-    echo -e "${GREEN}${BOLD}✅ LENNY PENNY IS LIVE!${NC}"
+    echo -e "${GREEN}${BOLD}✅ AUSTRALIAN WILDLIFE MONITOR IS LIVE!${NC}"
     echo -e "${WHITE}Check your browser at: ${BLUE}http://localhost:3000${NC}"
-    echo -e "${YELLOW}🦝 Happy animal detecting! 🦝${NC}"
+    echo -e "${YELLOW}� Happy Australian wildlife detecting! �${NC}"
 else
     echo ""
     echo -e "${BLUE}No problem! Launch anytime by double-clicking the desktop launcher.${NC}"
-    echo -e "${YELLOW}🦝 Lenny Penny will be waiting for you! 🦝${NC}"
+    echo -e "${YELLOW}� Lenny Penny will be waiting for you, mate! �${NC}"
 fi
 
 echo ""

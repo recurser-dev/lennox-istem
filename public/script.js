@@ -392,15 +392,18 @@ function updateFPS() {
 // Lenny Penny interactions
 function setupLennyInteractions() {
     const phrases = [
-        "Ready to monitor the burrow! 🏠",
-        "Looking for furry friends! 🐰",
-        "I love watching animals! 💕",
-        "The burrow is so cozy! 🌸",
-        "Any cute critters today? 👀",
-        "Nature is amazing! 🌿",
-        " You'll never walk alone! 🎶",
-        "Lennox is a furry friend! 🐾",
-        "Man united is my team! THEY SUCK👍",
+        "G'day! Ready to spot some Aussie wildlife! 🦘",
+        "Looking for kangaroos and koalas! �",
+        "I love watching native Australian animals! 💕",
+        "The Outback is calling! �",
+        "Any cute Aussie critters today? 👀",
+        "Fair dinkum, nature is bonkers! 🦜",
+        "Crikey! What animals will we see? 🐊",
+        "Strewth! Keep your eyes peeled for wombats! 🪃",
+        "She'll be right mate! 🇦�",
+        "Stone the flamin' crows! Look at those animals! 🦅",
+        "Too right! Australian wildlife is the best! 🦘",
+        "No worries! We'll find some amazing animals! �"
     ];
     
     lennyCharacter.addEventListener('click', () => {
@@ -431,6 +434,21 @@ function updateLennySpeech(text) {
 // Utility functions
 function getAnimalEmoji(animal) {
     const emojis = {
+        // Native Australian Animals
+        kangaroo: '🦘',
+        koala: '🐨',
+        wombat: '🪃',  // Using boomerang as closest match
+        platypus: '🦫',  // Using beaver as closest aquatic mammal
+        echidna: '🦔',   // Hedgehog as closest spiny mammal
+        dingo: '🐕',
+        kookaburra: '🐦',
+        cockatoo: '🦜',
+        emu: '🐦‍⬛',
+        quoll: '🐱',     // Cat-like marsupial
+        brumby: '🐴',    // Wild horse
+        merino: '🐑',    // Sheep
+        cattle: '🐄',
+        // Fallback for common animals
         rabbit: '🐰',
         mouse: '🐭',
         cat: '🐱',
@@ -446,7 +464,8 @@ function getAnimalEmoji(animal) {
         squirrel: '🐿️',
         fox: '🦊',
         wolf: '🐺',
-        deer: '🦌'
+        deer: '🦌',
+        person: '👤'
     };
     return emojis[animal] || '🐾';
 }

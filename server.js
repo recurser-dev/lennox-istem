@@ -48,13 +48,13 @@ async function processWebcamFrame(frameData) {
   try {
     // Check if we're using real TensorFlow or mock
     if (model.mock) {
-      // Mock object detection - simulate finding animals
+      // Mock object detection - simulate finding Australian animals
       const mockDetections = [];
       
-      // Randomly detect some animals to show the system works
+      // Randomly detect Australian animals to show the system works
       if (Math.random() < 0.3) { // 30% chance of detection
-        const animalTypes = ['cat', 'dog', 'bird', 'person'];
-        const randomAnimal = animalTypes[Math.floor(Math.random() * animalTypes.length)];
+        const australianAnimals = ['kangaroo', 'koala', 'wombat', 'platypus', 'echidna', 'dingo', 'kookaburra', 'cockatoo'];
+        const randomAnimal = australianAnimals[Math.floor(Math.random() * australianAnimals.length)];
         
         mockDetections.push({
           class: randomAnimal,
@@ -69,7 +69,7 @@ async function processWebcamFrame(frameData) {
       }
       
       if (mockDetections.length > 0) {
-        console.log(`🔍 Mock detected ${mockDetections.length} objects:`, 
+        console.log(`🦘 Mock detected ${mockDetections.length} Australian animals:`, 
                     mockDetections.map(d => `${d.class} (${Math.round(d.score * 100)}%)`));
       }
       
@@ -91,22 +91,37 @@ async function processWebcamFrame(frameData) {
       // Run object detection
       const predictions = await model.detect(canvas);
       
-      // Filter for animals and relevant objects
-      const animalClasses = ['person', 'cat', 'dog', 'bird', 'horse', 'sheep', 'cow', 'elephant', 'bear', 'zebra', 'giraffe'];
+      // Map detected animals to Australian equivalents and filter for relevant objects
+      const animalMapping = {
+        'cat': 'quoll',           // Native cat-like marsupial
+        'dog': 'dingo',           // Native wild dog
+        'bird': 'kookaburra',     // Iconic Australian bird
+        'horse': 'brumby',        // Wild horses in Australia
+        'sheep': 'merino',        // Australian sheep breed
+        'cow': 'cattle',          // Australian cattle
+        'elephant': 'wombat',     // Large, sturdy animal
+        'bear': 'koala',          // Bear-like marsupial
+        'zebra': 'kangaroo',      // Distinctive Australian animal
+        'giraffe': 'emu',         // Tall Australian bird
+        'person': 'person'        // Keep as is
+      };
+      
+      const australianClasses = Object.keys(animalMapping);
       const relevantDetections = predictions.filter(prediction => 
-        animalClasses.includes(prediction.class.toLowerCase()) && prediction.score > 0.5
+        australianClasses.includes(prediction.class.toLowerCase()) && prediction.score > 0.5
       );
       
-      // Convert to our format
+      // Convert to Australian animals
       const detections = relevantDetections.map(prediction => ({
-        class: prediction.class,
+        class: animalMapping[prediction.class.toLowerCase()] || prediction.class,
+        originalClass: prediction.class, // Keep original for debugging
         score: prediction.score,
         bbox: prediction.bbox // [x, y, width, height]
       }));
       
       if (detections.length > 0) {
-        console.log(`🤖 TensorFlow detected ${detections.length} objects:`, 
-                    detections.map(d => `${d.class} (${Math.round(d.score * 100)}%)`));
+        console.log(`� TensorFlow detected ${detections.length} Australian animals:`, 
+                    detections.map(d => `${d.class} (was: ${d.originalClass}) (${Math.round(d.score * 100)}%)`));
       }
       
       return detections;
