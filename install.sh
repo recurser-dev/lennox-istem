@@ -266,10 +266,15 @@ else
     echo -e "${GREEN}✅ Project downloaded successfully!${NC}"
 fi
 
-# Make update script executable if it exists
+# Make scripts executable if they exist
 if [ -f "$PROJECT_DIR/🔄 Update Wildlife Monitor.command" ]; then
-    
+    chmod +x "$PROJECT_DIR/🔄 Update Wildlife Monitor.command"
     echo -e "${GREEN}✅ Update script made executable!${NC}"
+fi
+
+if [ -f "$PROJECT_DIR/🦘 Launch Aussie Wildlife Monitor.command" ]; then
+    chmod +x "$PROJECT_DIR/🦘 Launch Aussie Wildlife Monitor.command"
+    echo -e "${GREEN}✅ Launch script made executable!${NC}"
 fi
 echo ""
 
@@ -303,8 +308,9 @@ if [ "$INSTALL_EXTENSIONS" = true ]; then
     echo ""
 fi
 
-# Step 9: Create desktop launcher
-echo -e "${YELLOW}🚀 Creating desktop launcher...${NC}"
+# Step 9: Project setup complete
+echo -e "${YELLOW}✅ Project setup complete!${NC}"
+echo -e "${BLUE}All launcher scripts are included in the project and have been made executable.${NC}"
 
 # Determine the desktop directory
 if [ "$ISTEM_DIR" = "$HOME/Desktop/ISTEM" ]; then
