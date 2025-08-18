@@ -28,6 +28,11 @@ Copy and paste this command into Terminal:
 curl -sSL https://raw.githubusercontent.com/recurser-dev/lennox-istem/main/install.sh | bash
 ```
 
+> **💡 Alternative method if you get permission errors:**
+> ```bash
+> curl -sSL https://raw.githubusercontent.com/recurser-dev/lennox-istem/main/install.sh -o install.sh && chmod +x install.sh && ./install.sh
+> ```
+
 **That's it!** The installer will:
 - 📁 Create an "ISTEM" folder on your Desktop
 - 🦝 Download Lenny Penny project
@@ -40,6 +45,26 @@ curl -sSL https://raw.githubusercontent.com/recurser-dev/lennox-istem/main/insta
 1. **Double-click** `🦝 Launch Lenny Penny.command` on your Desktop
 2. **Allow webcam access** when prompted
 3. **Click "Start Monitoring"** and watch the magic! ✨
+
+### 🔧 Troubleshooting
+
+**If you get "command not found" or permission errors:**
+```bash
+# Method 1: Download and run manually
+curl -sSL https://raw.githubusercontent.com/recurser-dev/lennox-istem/main/install.sh -o install.sh
+chmod +x install.sh
+./install.sh
+```
+
+**If you get "cho: command not found":**
+- This usually means the download was interrupted
+- Try the manual download method above
+- Make sure you have a stable internet connection
+
+**If the installer doesn't start:**
+- Make sure you're running macOS 10.15 or later
+- Check that you have admin privileges
+- Try restarting Terminal and running the command again
 
 ### Manual Installation
 
