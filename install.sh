@@ -268,7 +268,7 @@ fi
 
 # Make update script executable if it exists
 if [ -f "$PROJECT_DIR/🔄 Update Wildlife Monitor.command" ]; then
-    chmod +x "$PROJECT_DIR/🔄 Update Wildlife Monitor.command"
+    
     echo -e "${GREEN}✅ Update script made executable!${NC}"
 fi
 echo ""
@@ -354,6 +354,7 @@ wait \$SERVER_PID
 EOF
 
 chmod +x "$LAUNCHER_DIR/� Launch Aussie Wildlife Monitor.command"
+chmod +x "$PROJECT_DIR/🔄 Update Wildlife Monitor.command"
 echo -e "${GREEN}✅ Desktop launcher created!${NC}"
 echo ""
 
