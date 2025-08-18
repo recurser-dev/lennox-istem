@@ -14,16 +14,8 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 WHITE='\033[1;37m'
 BOLD='\033[1m'
-BLINK='chmod +x "$LAUNCHER_DIR/🦘 Launch Aussie Wildlife Monitor.command"
-
-# Make update script executable
-chmod +x "$PROJECT_DIR/🔄 Update Wildlife Monitor.command"
-echo -e "${GREEN}✅ Desktop launcher created!${NC}"
-echo ""3[5🚀 QUICK START:
-1. Double-click "🦘 Launch Aussie Wildlife Monitor.command" to start
-2. Allow webcam access when your browser prompts
-3. Click "Start Monitoring" in the dashboard
-4. Watch Lenny Penny detect Australian wildlife in real-time!33[0m' # No Color
+BLINK='\033[5m'
+NC='\033[0m' # No Color
 
 # Animation function
 animate_text() {
@@ -272,6 +264,12 @@ else
     cd "$PROJECT_DIR"
     progress_bar 3
     echo -e "${GREEN}✅ Project downloaded successfully!${NC}"
+fi
+
+# Make update script executable if it exists
+if [ -f "$PROJECT_DIR/🔄 Update Wildlife Monitor.command" ]; then
+    chmod +x "$PROJECT_DIR/🔄 Update Wildlife Monitor.command"
+    echo -e "${GREEN}✅ Update script made executable!${NC}"
 fi
 echo ""
 
