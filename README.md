@@ -22,15 +22,32 @@ An advanced AI-powered webcam monitoring system that detects animals in real-tim
 
 ### One-Click Installation (macOS)
 
+Copy and paste this command into Terminal:
+
 ```bash
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/lennox-istem/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/recurser-dev/lennox-istem/main/install.sh | bash
 ```
+
+**That's it!** The installer will:
+- 📁 Create an "ISTEM" folder on your Desktop
+- 🦝 Download Lenny Penny project
+- 🔧 Install all required software
+- 🚀 Set up VS Code with extensions
+- ✨ Create a desktop launcher
+
+### After Installation
+
+1. **Double-click** `🦝 Launch Lenny Penny.command` on your Desktop
+2. **Allow webcam access** when prompted
+3. **Click "Start Monitoring"** and watch the magic! ✨
 
 ### Manual Installation
 
+If you prefer to install manually:
+
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/lennox-istem.git
+   git clone https://github.com/recurser-dev/lennox-istem.git
    cd lennox-istem
    ```
 
@@ -48,8 +65,6 @@ curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/lennox-istem/main/inst
    ```
    http://localhost:3000
    ```
-
-5. **Enable webcam access** and click "Start Monitoring"!
 
 ## 🛠️ Technology Stack
 
@@ -182,7 +197,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 If you encounter any issues or have questions:
-1. Check the [Issues](https://github.com/YOUR_USERNAME/lennox-istem/issues) page
+1. Check the [Issues](https://github.com/recurser-dev/lennox-istem/issues) page
 2. Create a new issue with detailed information
 3. Include browser console logs and system information
 
