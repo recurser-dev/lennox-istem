@@ -357,7 +357,7 @@ cat > "$ISTEM_DIR/📋 HOW TO USE.txt" << EOF
 🦝 LENNY PENNY BURROW MONITOR - COMPLETE GUIDE
 
 🚀 QUICK START:
-1. Double-click "🦝 Launch Lenny Penny.command" to start
+1. Double-click "🦝 Launch Lenny Penny.command" on your desktop to start
 2. Allow webcam access when your browser prompts
 3. Click "Start Monitoring" in the dashboard
 4. Watch Lenny Penny detect animals in real-time!
