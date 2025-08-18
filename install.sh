@@ -14,8 +14,11 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 WHITE='\033[1;37m'
 BOLD='\033[1m'
-BLINK='\033[5m'
-NC='\033[0m' # No Color
+BLINK='\033[5🚀 QUICK START:
+1. Double-click "🦘 Launch Aussie Wildlife Monitor.command" to start
+2. Allow webcam access when your browser prompts
+3. Click "Start Monitoring" in the dashboard
+4. Watch Lenny Penny detect Australian wildlife in real-time!33[0m' # No Color
 
 # Animation function
 animate_text() {
@@ -357,7 +360,11 @@ cat > "$ISTEM_DIR/📋 HOW TO USE.txt" << EOF
 � LENNY PENNY AUSTRALIAN WILDLIFE MONITOR - COMPLETE GUIDE
 
 🚀 QUICK START:
+<<<<<<< HEAD
 1. Double-click "� Launch Aussie Wildlife Monitor.command" to start
+=======
+1. Double-click "🦝 Launch Lenny Penny.command" on your desktop to start
+>>>>>>> f3a8baf648f36831d696071dddb4df4a426778ab
 2. Allow webcam access when your browser prompts
 3. Click "Start Monitoring" in the dashboard
 4. Watch Lenny Penny detect animals in real-time!
