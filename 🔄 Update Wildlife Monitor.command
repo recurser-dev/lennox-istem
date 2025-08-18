@@ -13,6 +13,25 @@ echo "📍 Location: $(pwd)"
 echo "🕐 Time: $(date)"
 echo ""
 
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+echo -e "${BLUE}Script location: $SCRIPT_DIR${NC}"
+
+# Change to the script directory (should be the project root)
+cd "$SCRIPT_DIR"
+echo -e "${BLUE}Working in: $(pwd)${NC}"
+
+# Double-check we're in the right place by looking for key files
+if [ ! -f "package.json" ] || [ ! -f "server.js" ] || [ ! -d "public" ]; then
+    echo -e "${RED}❌ Error: This doesn't appear to be the Wildlife Monitor project directory${NC}"
+    echo -e "${YELLOW}Expected files: package.json, server.js, public/ directory${NC}"
+    echo -e "${YELLOW}💡 Make sure to run this script from the project folder${NC}"
+    echo ""
+    read -p "Press any key to exit..."
+    exit 1
+fi
+echo ""
+
 # Colors
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
@@ -24,6 +43,13 @@ echo -e "${BLUE}🔄 Checking for updates...${NC}"
 echo ""
 
 # Check if we're in a git repository
+if [ ! -d ".git" ]; then
+    echo -e "${RED}❌ Error: This doesn't appear to be a git repository${NC}"
+    echo -e "${YELLOW}💡 Try running the installer again to get the latest version${NC}"
+    echo ""
+    read -p "Press any key to exit..."
+    exit 1
+fi
 
 # Stop any running server
 echo -e "${YELLOW}🛑 Stopping any running servers...${NC}"
