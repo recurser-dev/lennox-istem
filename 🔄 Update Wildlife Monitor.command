@@ -24,13 +24,6 @@ echo -e "${BLUE}🔄 Checking for updates...${NC}"
 echo ""
 
 # Check if we're in a git repository
-if [ ! -d ".git" ]; then
-    echo -e "${RED}❌ Error: This doesn't appear to be a git repository${NC}"
-    echo -e "${YELLOW}💡 Try running the installer again to get the latest version${NC}"
-    echo ""
-    read -p "Press any key to exit..."
-    exit 1
-fi
 
 # Stop any running server
 echo -e "${YELLOW}🛑 Stopping any running servers...${NC}"
