@@ -14,7 +14,12 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 WHITE='\033[1;37m'
 BOLD='\033[1m'
-BLINK='\033[5🚀 QUICK START:
+BLINK='chmod +x "$LAUNCHER_DIR/🦘 Launch Aussie Wildlife Monitor.command"
+
+# Make update script executable
+chmod +x "$PROJECT_DIR/🔄 Update Wildlife Monitor.command"
+echo -e "${GREEN}✅ Desktop launcher created!${NC}"
+echo ""3[5🚀 QUICK START:
 1. Double-click "🦘 Launch Aussie Wildlife Monitor.command" to start
 2. Allow webcam access when your browser prompts
 3. Click "Start Monitoring" in the dashboard

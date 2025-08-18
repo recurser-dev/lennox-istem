@@ -262,6 +262,13 @@ function captureAndSendFrame() {
 function updateDetections(detections) {
     detectionOverlay.innerHTML = '';
     
+    if (!detections || detections.length === 0) {
+        return;
+    }
+    
+    // Count animals in current frame
+    const currentFrameAnimals = {};
+    
     detections.forEach((detection, index) => {
         const [x, y, width, height] = detection.bbox;
         
@@ -281,40 +288,82 @@ function updateDetections(detections) {
         
         detectionOverlay.appendChild(box);
         
-        // Add to history if new
-        const isNew = !detectionHistory.some(h => 
-            h.class === detection.class && 
-            Math.abs(h.timestamp - Date.now()) < 2000
+        // Count this animal type in current frame
+        const animalType = detection.class;
+        currentFrameAnimals[animalType] = (currentFrameAnimals[animalType] || 0) + 1;
+    });
+    
+    // Update history with frame snapshot if animals were detected
+    if (Object.keys(currentFrameAnimals).length > 0) {
+        addFrameToHistory(currentFrameAnimals);
+        
+        // Show Lenny Penny reactions for Australian animals (occasionally to avoid spam)
+        const australianPhrases = {
+            kangaroo: "Crikey! Kangaroos!",
+            koala: "Fair dinkum! Koalas!", 
+            wombat: "Stone the crows! Wombats!",
+            dingo: "Blimey! Dingoes!",
+            kookaburra: "Beauty! Kookaburras!",
+            cockatoo: "Too right! Cockatoos!",
+            platypus: "Crikey! A platypus!",
+            echidna: "Strewth! An echidna!"
+        };
+        
+        // Show reaction for the first Australian animal detected (10% chance to avoid spam)
+        const firstAustralianAnimal = Object.keys(currentFrameAnimals).find(animal => 
+            australianPhrases[animal]
         );
         
-        if (isNew) {
-            const historyItem = {
-                ...detection,
-                timestamp: Date.now(),
-                id: Date.now() + index
-            };
-            detectionHistory.unshift(historyItem);
-            
-            // Keep only last 20 detections
-            if (detectionHistory.length > 20) {
-                detectionHistory = detectionHistory.slice(0, 20);
-            }
-            
-            updateDetectionsList();
-            
-            // Show excitement for new animal
-            if (detection.class === 'rabbit' || detection.class === 'mouse') {
-                updateLennySpeech(`Wow! A ${detection.class}! 🎉`);
-                showToast(`🎯 New ${detection.class} detected!`, 'success');
-            }
+        if (firstAustralianAnimal && Math.random() < 0.1) {
+            updateLennySpeech(australianPhrases[firstAustralianAnimal]);
+            const count = currentFrameAnimals[firstAustralianAnimal];
+            const plural = count > 1 ? 's' : '';
+            showToast(`${count} ${firstAustralianAnimal}${plural} detected!`, 'success');
         }
-    });
+    }
+}
+
+// Add frame data to history with animal counts
+function addFrameToHistory(frameAnimals) {
+    const timestamp = Date.now();
+    
+    // Only add if it's been at least 2 seconds since last entry to avoid spam
+    const lastEntry = detectionHistory[0];
+    if (lastEntry && timestamp - lastEntry.timestamp < 2000) {
+        return;
+    }
+    
+    const historyItem = {
+        timestamp: timestamp,
+        id: timestamp,
+        animals: frameAnimals,
+        totalCount: Object.values(frameAnimals).reduce((sum, count) => sum + count, 0)
+    };
+    
+    detectionHistory.unshift(historyItem);
+    
+    // Keep only last 20 detection events
+    if (detectionHistory.length > 20) {
+        detectionHistory = detectionHistory.slice(0, 20);
+    }
+    
+    updateDetectionsList();
 }
 
 // Update statistics
 function updateStats(data) {
-    totalDetections.textContent = detectionHistory.length;
-    animalCount.textContent = data.animalTypes ? data.animalTypes.length : 0;
+    // Calculate total individual animal detections across recent frames
+    const totalAnimals = detectionHistory.reduce((total, group) => total + group.totalCount, 0);
+    totalDetections.textContent = totalAnimals;
+    
+    // Calculate unique animal types detected recently
+    const uniqueAnimals = new Set();
+    detectionHistory.forEach(group => {
+        Object.keys(group.animals).forEach(animal => uniqueAnimals.add(animal));
+    });
+    animalCount.textContent = uniqueAnimals.size;
+    
+    // Show average confidence (using data from server if available)
     confidence.textContent = data.averageConfidence ? `${Math.round(data.averageConfidence * 100)}%` : '0%';
     
     // Add animation to numbers
@@ -332,33 +381,63 @@ function updateDetectionsList() {
         detectionsList.innerHTML = `
             <div class="no-detections">
                 <i class="fas fa-search"></i>
-                <p>No animals detected yet...</p>
-                <p class="subtitle">Start monitoring to see Lenny Penny's friends!</p>
+                <p>No Australian wildlife detected yet...</p>
+                <p class="subtitle">Start monitoring to see native animals!</p>
             </div>
         `;
         return;
     }
     
     const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-    const filteredDetections = activeFilter === 'all' 
-        ? detectionHistory 
-        : detectionHistory.filter(d => d.class === activeFilter);
     
-    detectionsList.innerHTML = filteredDetections.map(detection => {
-        const emoji = getAnimalEmoji(detection.class);
-        const timeAgo = getTimeAgo(detection.timestamp);
+    detectionsList.innerHTML = detectionHistory.map(group => {
+        const timeAgo = getTimeAgo(group.timestamp);
+        
+        // Filter animals based on active filter
+        const animals = Object.entries(group.animals).filter(([animalType, count]) => 
+            activeFilter === 'all' || animalType === activeFilter
+        );
+        
+        if (animals.length === 0) return ''; // Skip groups with no matching animals
+        
+        // Create animal summary without emojis
+        const animalSummary = animals.map(([animalType, count]) => {
+            const plural = count > 1 ? 's' : '';
+            const displayName = animalType.charAt(0).toUpperCase() + animalType.slice(1);
+            
+            return `
+                <div class="animal-detection">
+                    <span class="animal-info">
+                        <strong>${count} ${displayName}${plural}</strong>
+                    </span>
+                </div>
+            `;
+        }).join('');
         
         return `
-            <div class="detection-item">
-                <div class="detection-icon">${emoji}</div>
-                <div class="detection-info">
-                    <h4>${detection.class.charAt(0).toUpperCase() + detection.class.slice(1)}</h4>
-                    <p>${timeAgo}</p>
+            <div class="detection-group">
+                <div class="detection-time">
+                    <i class="fas fa-clock"></i>
+                    <span>${timeAgo}</span>
                 </div>
-                <div class="detection-confidence">${Math.round(detection.score * 100)}%</div>
+                <div class="animals-detected">
+                    ${animalSummary}
+                </div>
             </div>
         `;
-    }).join('');
+    }).filter(item => item !== '').join('');
+    
+    // Show message if no animals match filter
+    if (detectionsList.innerHTML === '') {
+        const filterName = activeFilter === 'all' ? 'animals' : activeFilter + 's';
+        detectionsList.innerHTML = `
+            <div class="no-detections">
+                <i class="fas fa-search"></i>
+                <p>No ${filterName} detected recently...</p>
+                <p class="subtitle">Try switching to "All" or wait for more detections!</p>
+            </div>
+        `;
+    }
 }
 
 // Filter detections
