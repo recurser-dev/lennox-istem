@@ -10,18 +10,24 @@ echo "📍 Location: $(pwd)"
 echo "🕐 Time: $(date)"
 echo ""
 
-# Install dependencies if needed
-if [ ! -d "node_modules" ]; then
-    echo "📦 Installing dependencies..."
+# Check for package.json changes and update dependencies if needed
+if [ ! -d "node_modules" ] || [ "package.json" -nt "node_modules" ]; then
+    echo "📦 Installing/updating dependencies..."
     npm install
+    echo ""
 fi
+
+# Kill any existing processes on port 3000
+echo "🛑 Checking for existing processes..."
+lsof -ti:3000 | xargs kill -9 2>/dev/null || true
+sleep 1
 
 echo "🚀 Starting server..."
 npm start &
 SERVER_PID=$!
 
 echo "⏳ Waiting for server to start..."
-sleep 3
+sleep 4
 
 echo "🌐 Opening browser..."
 open http://localhost:3000

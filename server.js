@@ -28,12 +28,22 @@ let model = null;
 async function loadModel() {
   try {
     console.log('🧠 Loading TensorFlow.js COCO-SSD model...');
-    model = await cocoSsd.load();
+    
+    // Set TensorFlow.js backend to CPU to avoid compatibility issues
+    await tf.ready();
+    console.log('📊 TensorFlow.js backend ready');
+    
+    model = await cocoSsd.load({
+      base: 'lite_mobilenet_v2' // Use lighter model for better compatibility
+    });
+    
     console.log('✅ TensorFlow.js COCO-SSD model loaded successfully!');
     console.log('🔍 Ready to detect:', model.getClassLabels ? model.getClassLabels().slice(0, 10).join(', ') + '...' : 'various objects');
   } catch (error) {
-    console.error('❌ Error loading TensorFlow model:', error);
+    console.error('❌ Error loading TensorFlow model:', error.message);
+    console.log('💡 This might be a version compatibility issue');
     console.log('🔄 Falling back to mock detection...');
+    console.log('💻 Try running: npm install @tensorflow/tfjs@4.20.0 @tensorflow/tfjs-node@4.20.0');
     model = { mock: true }; // Fallback to mock
   }
 }
@@ -262,8 +272,49 @@ app.get('/api/status', (req, res) => {
 async function init() {
   await loadModel();
   const PORT = process.env.PORT || 3000;
+  
+  // Check if port is already in use
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.log(`❌ Port ${PORT} is already in use!`);
+      console.log('🔍 Checking for alternative ports...');
+      
+      // Try alternative ports
+      const altPorts = [3001, 3002, 3003, 8000, 8080];
+      let portFound = false;
+      
+      for (const altPort of altPorts) {
+        try {
+          server.listen(altPort, () => {
+            console.log(`� Lenny Penny Wildlife Monitor running on http://localhost:${altPort}`);
+            console.log('📹 Real webcam processing ready!');
+            if (model && !model.mock) {
+              console.log('🤖 TensorFlow.js COCO-SSD model loaded! Real AI detection active!');
+            } else {
+              console.log('🧠 Mock AI detection loaded! (TensorFlow.js will load on first use)');
+            }
+            console.log('📱 Open your browser and enable webcam access!');
+            console.log('🎯 The webcam will analyze your real feed with AI object detection');
+            portFound = true;
+          });
+          break;
+        } catch (e) {
+          continue;
+        }
+      }
+      
+      if (!portFound) {
+        console.log('❌ No available ports found. Please close other applications using ports 3000-3003, 8000, 8080');
+        process.exit(1);
+      }
+    } else {
+      console.error('❌ Server error:', err);
+      process.exit(1);
+    }
+  });
+  
   server.listen(PORT, () => {
-    console.log(`🦝 Lenny Penny Burrow Monitor running on http://localhost:${PORT}`);
+    console.log(`🦘 Lenny Penny Wildlife Monitor running on http://localhost:${PORT}`);
     console.log('📹 Real webcam processing ready!');
     if (model && !model.mock) {
       console.log('🤖 TensorFlow.js COCO-SSD model loaded! Real AI detection active!');

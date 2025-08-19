@@ -31,11 +31,13 @@ curl -sSL https://raw.githubusercontent.com/recurser-dev/lennox-istem/main/insta
 ```
 
 > **💡 Alternative method if you get permission errors:**
+>
 > ```bash
 > curl -sSL https://raw.githubusercontent.com/recurser-dev/lennox-istem/main/install.sh -o install.sh && chmod +x install.sh && ./install.sh
 > ```
 
 **That's it!** The installer will:
+
 - 📁 Create an "ISTEM" folder on your Desktop
 - � Download Lenny Penny Wildlife Monitor project
 - 🔧 Install all required software
@@ -52,6 +54,7 @@ curl -sSL https://raw.githubusercontent.com/recurser-dev/lennox-istem/main/insta
 ### 🔧 Troubleshooting
 
 **If you get "command not found" or permission errors:**
+
 ```bash
 # Method 1: Download and run manually
 curl -sSL https://raw.githubusercontent.com/recurser-dev/lennox-istem/main/install.sh -o install.sh
@@ -60,11 +63,13 @@ chmod +x install.sh
 ```
 
 **If you get "cho: command not found":**
+
 - This usually means the download was interrupted
 - Try the manual download method above
 - Make sure you have a stable internet connection
 
 **If the installer doesn't start:**
+
 - Make sure you're running macOS 10.15 or later
 - Check that you have admin privileges
 - Try restarting Terminal and running the command again
@@ -74,17 +79,20 @@ chmod +x install.sh
 If you prefer to install manually:
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/recurser-dev/lennox-istem.git
    cd lennox-istem
    ```
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 3. **Start the server:**
+
    ```bash
    npm start
    ```
@@ -105,8 +113,9 @@ If you prefer to install manually:
 ## 🎯 Detectable Objects
 
 The AI can detect various animals and objects including:
+
 - 🐱 Cats
-- 🐕 Dogs  
+- 🐕 Dogs
 - 🐦 Birds
 - 🐴 Horses
 - 🐑 Sheep
@@ -136,47 +145,51 @@ lennox-istem/
 1. **Start the Application:** Run `npm start` or use the install script
 2. **Open the Dashboard:** Navigate to `http://localhost:3000`
 3. **Grant Camera Access:** Allow webcam permissions when prompted
-4. **Begin Monitoring:** Click "Start Monitoring" 
+4. **Begin Monitoring:** Click "Start Monitoring"
 5. **Watch Lenny Penny:** See detections in real-time with animated overlays
 6. **Interact:** Click on Lenny Penny for fun phrases!
 
 ## 🔧 Configuration
 
 ### Environment Variables
+
 - `PORT` - Server port (default: 3000)
 
 ### Camera Settings
+
 The webcam defaults to 640x480 resolution at 30fps. You can modify the constraints in `public/script.js`:
 
 ```javascript
 const constraints = {
-    video: { 
-        width: { ideal: 640 },
-        height: { ideal: 480 },
-        frameRate: { ideal: 30, max: 30 }
-    },
-    audio: false
+  video: {
+    width: { ideal: 640 },
+    height: { ideal: 480 },
+    frameRate: { ideal: 30, max: 30 },
+  },
+  audio: false,
 };
 ```
 
 ## 🎨 Customization
 
 ### Lenny Penny Phrases
+
 Add your own phrases in `public/script.js`:
 
 ```javascript
 const phrases = [
-    "Ready to monitor the burrow! 🏠",
-    "Looking for furry friends! 🐰",
-    // Add your custom phrases here!
+  'Ready to monitor the burrow! 🏠',
+  'Looking for furry friends! 🐰',
+  // Add your custom phrases here!
 ];
 ```
 
 ### Detection Filters
+
 Modify the animal detection list in `server.js`:
 
 ```javascript
-const animalClasses = ['person', 'cat', 'dog', 'bird', /* add more animals */];
+const animalClasses = ['person', 'cat', 'dog', 'bird' /* add more animals */];
 ```
 
 ## 📊 Performance
@@ -189,16 +202,19 @@ const animalClasses = ['person', 'cat', 'dog', 'bird', /* add more animals */];
 ## 🐛 Troubleshooting
 
 ### Black Webcam Screen
+
 - Ensure camera permissions are granted
 - Check if another application is using the camera
 - Try refreshing the page
 
 ### TensorFlow.js Errors
+
 - Ensure you have sufficient RAM (>4GB recommended)
 - Check Node.js version compatibility
 - Clear npm cache: `npm cache clean --force`
 
 ### Performance Issues
+
 - Reduce frame rate in `script.js`
 - Close other CPU-intensive applications
 - Ensure stable internet connection
@@ -225,6 +241,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 If you encounter any issues or have questions:
+
 1. Check the [Issues](https://github.com/recurser-dev/lennox-istem/issues) page
 2. Create a new issue with detailed information
 3. Include browser console logs and system information
@@ -233,7 +250,7 @@ If you encounter any issues or have questions:
 
 **Made with ❤️ for animal lovers and STEM education!**
 
-🦝 *"Lenny Penny is always watching for furry friends!"*
+🦝 _"Lenny Penny is always watching for furry friends!"_
 
 ## ✨ Features
 
@@ -257,16 +274,19 @@ If you encounter any issues or have questions:
 ### Installation
 
 1. **Clone or navigate to the project directory**:
+
    ```bash
    cd /Users/calebschool/Documents/LennoxIstem
    ```
 
 2. **Install dependencies**:
+
    ```bash
    npm install
    ```
 
 3. **Start the server**:
+
    ```bash
    npm start
    ```
@@ -288,6 +308,7 @@ If you encounter any issues or have questions:
 ## 🛠️ Technical Details
 
 ### Backend (Node.js + Express)
+
 - **Express Server**: Serves the web application
 - **Socket.IO**: Real-time communication between server and client
 - **HTTPS Client**: Fetches real animal images from Unsplash API
@@ -295,6 +316,7 @@ If you encounter any issues or have questions:
 - **Fallback System**: SVG generation when external sources are unavailable
 
 ### Frontend (HTML + CSS + JavaScript)
+
 - **Responsive Grid Layout**: CSS Grid for dashboard layout
 - **CSS Animations**: Smooth transitions and effects
 - **Socket.IO Client**: Real-time data updates
@@ -302,6 +324,7 @@ If you encounter any issues or have questions:
 - **Interactive Elements**: Buttons, filters, and character interactions
 
 ### Real Image Sources
+
 - **Unsplash API**: High-quality wildlife photography
 - **Dynamic Fetching**: Images are fetched in real-time
 - **Intelligent Caching**: Reuses images for performance
@@ -310,9 +333,11 @@ If you encounter any issues or have questions:
 ## 🎨 Customization
 
 ### Adding New Animals
+
 To add new animal types to detect:
 
 1. **Update the server.js file**:
+
    ```javascript
    const animalClasses = ['cat', 'dog', 'bird', 'your-new-animal'];
    ```
@@ -320,23 +345,28 @@ To add new animal types to detect:
 2. **Add emoji mapping in script.js**:
    ```javascript
    const emojis = {
-       'your-new-animal': '🦝'
+     'your-new-animal': '🦝',
    };
    ```
 
 ### Changing Colors
+
 Modify the CSS variables in `style.css`:
+
 ```css
 :root {
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --accent-color: #2ed573;
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --accent-color: #2ed573;
 }
 ```
 
 ### Adjusting Detection Sensitivity
+
 In `server.js`, modify the confidence threshold:
+
 ```javascript
-detectedAnimals.filter(prediction => 
+detectedAnimals.filter(
+  (prediction) =>
     animalClasses.includes(prediction.class) && prediction.score > 0.3 // Change this value
 );
 ```
@@ -357,6 +387,7 @@ LennoxIstem/
 ## 🔧 Development
 
 ### Running in Development Mode
+
 ```bash
 npm run dev
 ```
@@ -364,6 +395,7 @@ npm run dev
 This uses `nodemon` to automatically restart the server when files change.
 
 ### Adding New Features
+
 1. **Backend changes**: Modify `server.js` for new API endpoints or detection logic
 2. **Frontend changes**: Update HTML, CSS, or JavaScript in the `public/` folder
 3. **Real-time features**: Use Socket.IO events for live updates
@@ -382,12 +414,14 @@ This uses `nodemon` to automatically restart the server when files change.
 ### Common Issues
 
 1. **Port already in use**:
+
    ```bash
    # Kill process on port 3000
    lsof -ti:3000 | xargs kill -9
    ```
 
 2. **Model loading fails**:
+
    - Check internet connection (model downloads from CDN)
    - Ensure Node.js version is compatible
 
