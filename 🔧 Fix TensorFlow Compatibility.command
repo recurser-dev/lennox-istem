@@ -13,6 +13,16 @@ echo "📍 Location: $(pwd)"
 echo "🕐 Time: $(date)"
 echo ""
 
+# Ensure we're in the project directory
+if [ ! -f "package.json" ]; then
+    echo "❌ package.json not found! Make sure you're in the project directory."
+    echo "🚫 This script must be run from the LennoxIstem project folder."
+    exit 1
+fi
+
+echo "✅ Found package.json - proceeding with fix..."
+echo ""
+
 echo "🧹 Cleaning up existing dependencies..."
 
 # Stop any running servers
@@ -30,6 +40,11 @@ rm -f package-lock.json
 # Clear npm cache
 echo "🧽 Clearing npm cache..."
 npm cache clean --force
+
+# Set npm to prefer local installations
+echo "🎯 Configuring npm for local installation..."
+npm config set prefix "$(pwd)"
+npm config set global false
 
 # Install specific compatible versions
 echo "📦 Installing compatible TensorFlow.js versions..."
@@ -59,17 +74,48 @@ echo -e "\033[0;32m✅ Compatibility fix complete!\033[0m"
 echo ""
 echo "🧪 Testing TensorFlow.js installation..."
 
-# Test TensorFlow.js
+# Verify we're in the right directory
+echo "📁 Current directory: $(pwd)"
+echo "📦 Checking if node_modules exists..."
+if [ -d "node_modules" ]; then
+    echo "✅ node_modules directory found"
+    echo "📊 Size: $(du -sh node_modules | cut -f1)"
+else
+    echo "❌ node_modules directory missing!"
+    echo "🔄 Running npm install again..."
+    npm install --legacy-peer-deps
+fi
+
+# Test TensorFlow.js with proper path resolution
+echo "🧪 Testing TensorFlow.js installation..."
 node -e "
+console.log('📍 Working directory:', process.cwd());
+console.log('📦 Node.js version:', process.version);
+console.log('🔍 Module resolution paths:');
+console.log('   node_modules:', require('path').join(process.cwd(), 'node_modules'));
+
 try {
+  // Test if local node_modules exists
+  const fs = require('fs');
+  const path = require('path');
+  const nodeModulesPath = path.join(process.cwd(), 'node_modules');
+  
+  if (!fs.existsSync(nodeModulesPath)) {
+    throw new Error('Local node_modules directory not found at: ' + nodeModulesPath);
+  }
+  
   const tf = require('@tensorflow/tfjs-node');
   const cocoSsd = require('@tensorflow-models/coco-ssd');
   console.log('✅ TensorFlow.js modules load successfully');
   console.log('📦 TensorFlow.js version:', tf.version.tfjs);
+  console.log('🎯 COCO-SSD model available');
 } catch (error) {
   console.log('❌ TensorFlow.js test failed:', error.message);
-  console.log('💡 You may need to use a different Node.js version');
-  console.log('💻 Try: nvm use 18 or nvm use 20');
+  console.log('💡 This suggests a module resolution issue');
+  console.log('🔧 Possible solutions:');
+  console.log('   1. Try different Node.js version: nvm use 18 or nvm use 20');
+  console.log('   2. Check if you have conflicting global installations');
+  console.log('   3. Try the Simple TensorFlow Fix script instead');
 }
 "
 

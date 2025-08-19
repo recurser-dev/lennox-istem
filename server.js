@@ -20,13 +20,6 @@ try {
   tensorflowAvailable = false;
 }
 
-const { createCanvas, loadImage } = require('canvas');press = require('express');
-const http = require('http');
-const socketIo = require('socket.io');
-const path = require('path');
-const cors = require('cors');
-const tf = require('@tensorflow/tfjs-node');
-const cocoSsd = require('@tensorflow-models/coco-ssd');
 const { createCanvas, loadImage } = require('canvas');
 
 const app = express();

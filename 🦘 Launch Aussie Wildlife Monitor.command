@@ -10,6 +10,18 @@ echo "📍 Location: $(pwd)"
 echo "🕐 Time: $(date)"
 echo ""
 
+# Verify we're in the correct project directory
+if [ ! -f "server.js" ] || [ ! -f "package.json" ]; then
+    echo "❌ Error: Could not find server.js or package.json"
+    echo "🚫 Make sure this script is in the LennoxIstem project folder"
+    echo "📁 Current directory: $(pwd)"
+    echo "📁 Expected files: server.js, package.json"
+    exit 1
+fi
+
+echo "✅ Project files found - proceeding with launch..."
+echo ""
+
 # Check for package.json changes and update dependencies if needed
 if [ ! -d "node_modules" ] || [ "package.json" -nt "node_modules" ]; then
     echo "📦 Installing/updating dependencies..."
