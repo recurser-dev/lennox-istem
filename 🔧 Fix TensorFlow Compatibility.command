@@ -33,15 +33,26 @@ npm cache clean --force
 
 # Install specific compatible versions
 echo "📦 Installing compatible TensorFlow.js versions..."
-echo "   @tensorflow/tfjs@4.20.0"
-echo "   @tensorflow/tfjs-node@4.20.0"
+echo "   @tensorflow/tfjs@3.21.0"
+echo "   @tensorflow/tfjs-node@3.21.0"
 echo "   @tensorflow-models/coco-ssd@2.2.2"
 
-npm install --save @tensorflow/tfjs@4.20.0 @tensorflow/tfjs-node@4.20.0 @tensorflow/tfjs-backend-cpu@4.20.0 @tensorflow-models/coco-ssd@2.2.2
+# Try normal install first
+if npm install --save @tensorflow/tfjs@3.21.0 @tensorflow/tfjs-node@3.21.0 @tensorflow/tfjs-backend-cpu@3.21.0 @tensorflow-models/coco-ssd@2.2.2; then
+    echo "✅ Normal installation successful"
+else
+    echo "⚠️ Normal install failed, trying with legacy peer deps..."
+    npm install --save --legacy-peer-deps @tensorflow/tfjs@3.21.0 @tensorflow/tfjs-node@3.21.0 @tensorflow/tfjs-backend-cpu@3.21.0 @tensorflow-models/coco-ssd@2.2.2
+fi
 
 # Install other dependencies
 echo "📦 Installing other dependencies..."
-npm install
+if npm install; then
+    echo "✅ All dependencies installed successfully"
+else
+    echo "⚠️ Some dependencies failed, trying with legacy peer deps..."
+    npm install --legacy-peer-deps
+fi
 
 echo ""
 echo -e "\033[0;32m✅ Compatibility fix complete!\033[0m"
