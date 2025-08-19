@@ -3,6 +3,28 @@ const http = require('http');
 const socketIo = require('socket.io');
 const path = require('path');
 const cors = require('cors');
+
+// TensorFlow.js setup with error handling
+let tf, cocoSsd;
+let tensorflowAvailable = false;
+
+try {
+  // Try to load TensorFlow.js with specific backend
+  tf = require('@tensorflow/tfjs-node');
+  cocoSsd = require('@tensorflow-models/coco-ssd');
+  tensorflowAvailable = true;
+  console.log('📦 TensorFlow.js modules loaded successfully');
+} catch (error) {
+  console.log('⚠️ TensorFlow.js not available, using mock detection');
+  console.log('💡 Error:', error.message);
+  tensorflowAvailable = false;
+}
+
+const { createCanvas, loadImage } = require('canvas');press = require('express');
+const http = require('http');
+const socketIo = require('socket.io');
+const path = require('path');
+const cors = require('cors');
 const tf = require('@tensorflow/tfjs-node');
 const cocoSsd = require('@tensorflow-models/coco-ssd');
 const { createCanvas, loadImage } = require('canvas');
@@ -26,25 +48,41 @@ let model = null;
 
 // Load TensorFlow model for real object detection
 async function loadModel() {
+  if (!tensorflowAvailable) {
+    console.log('🔄 TensorFlow.js not available, using mock detection');
+    model = { mock: true };
+    return;
+  }
+
   try {
     console.log('🧠 Loading TensorFlow.js COCO-SSD model...');
     
-    // Set TensorFlow.js backend to CPU to avoid compatibility issues
-    await tf.ready();
-    console.log('📊 TensorFlow.js backend ready');
+    // Clear any existing backend
+    if (tf && tf.engine) {
+      tf.engine().reset();
+    }
     
+    // Set platform to Node.js explicitly
+    await tf.ready();
+    console.log('📊 TensorFlow.js backend ready:', tf.getBackend());
+    
+    // Load model with specific configuration
     model = await cocoSsd.load({
-      base: 'lite_mobilenet_v2' // Use lighter model for better compatibility
+      base: 'lite_mobilenet_v2',
+      modelUrl: undefined // Use default URL
     });
     
     console.log('✅ TensorFlow.js COCO-SSD model loaded successfully!');
     console.log('🔍 Ready to detect:', model.getClassLabels ? model.getClassLabels().slice(0, 10).join(', ') + '...' : 'various objects');
   } catch (error) {
     console.error('❌ Error loading TensorFlow model:', error.message);
-    console.log('💡 This might be a version compatibility issue');
+    console.log('� Troubleshooting steps:');
+    console.log('   1. Delete node_modules: rm -rf node_modules');
+    console.log('   2. Clear npm cache: npm cache clean --force');
+    console.log('   3. Reinstall: npm install');
+    console.log('   4. Try different Node.js version if issue persists');
     console.log('🔄 Falling back to mock detection...');
-    console.log('💻 Try running: npm install @tensorflow/tfjs@4.20.0 @tensorflow/tfjs-node@4.20.0');
-    model = { mock: true }; // Fallback to mock
+    model = { mock: true };
   }
 }
 

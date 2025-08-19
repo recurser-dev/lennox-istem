@@ -21,7 +21,28 @@ NC='\033[0m' # No Color
 animate_text() {
     local text="$1"
     local delay="$2"
-    for (( i=0; i<${#text}; i++ )); do
+    fecho -e "${CYAN}${BOLD}📁 FILES CREATED:${NC}"
+if [ "$LAUNCHER_DIR" = "$HOME/Desktop" ]; then
+    echo -e "${GREEN}  🦘 Launch Aussie Wildlife Monitor.command  ${BLUE}(Desktop)${NC}"
+else
+    echo -e "${GREEN}  🦘 Launch Aussie Wildlife Monitor.command  ${BLUE}($LAUNCHER_DIR)${NC}"
+fi
+echo -e "${GREEN}  🔄 Update Wildlife Monitor.command          ${BLUE}(In project)${NC}"
+echo -e "${GREEN}  🔧 Fix TensorFlow Compatibility.command     ${BLUE}(If needed)${NC}"
+echo -e "${GREEN}  📁 ISTEM/                                  ${BLUE}($ISTEM_DIR)${NC}"
+echo -e "${GREEN}  📋 HOW TO USE.txt                          ${BLUE}(Complete guide)${NC}"
+echo ""
+
+echo -e "${YELLOW}${BOLD}🚀 QUICK START INSTRUCTIONS:${NC}"
+echo -e "${WHITE}  1. ${BLUE}Double-click${NC} 🦘 Launch Aussie Wildlife Monitor.command"
+echo -e "${WHITE}  2. ${BLUE}Allow webcam access${NC} when browser prompts"
+echo -e "${WHITE}  3. ${BLUE}Click 'Start Monitoring'${NC} in the dashboard"
+echo -e "${WHITE}  4. ${BLUE}Watch the magic${NC} as AI detects Australian wildlife! ✨"
+echo ""
+echo -e "${YELLOW}${BOLD}🔧 TROUBLESHOOTING:${NC}"
+echo -e "${WHITE}  • ${BLUE}TensorFlow errors?${NC} Run 🔧 Fix TensorFlow Compatibility.command"
+echo -e "${WHITE}  • ${BLUE}Port conflicts?${NC} Server will auto-find available ports"
+echo -e "${WHITE}  • ${BLUE}Updates available?${NC} Run 🔄 Update Wildlife Monitor.command"#text}; i++ )); do
         echo -n "${text:$i:1}"
         sleep "$delay"
     done
@@ -276,14 +297,38 @@ if [ -f "$PROJECT_DIR/🦘 Launch Aussie Wildlife Monitor.command" ]; then
     chmod +x "$PROJECT_DIR/🦘 Launch Aussie Wildlife Monitor.command"
     echo -e "${GREEN}✅ Launch script made executable!${NC}"
 fi
+
+if [ -f "$PROJECT_DIR/🔧 Fix TensorFlow Compatibility.command" ]; then
+    chmod +x "$PROJECT_DIR/🔧 Fix TensorFlow Compatibility.command"
+    echo -e "${GREEN}✅ TensorFlow fix script made executable!${NC}"
+fi
 echo ""
 
 # Step 7: Install project dependencies
 echo -e "${YELLOW}📦 Installing project dependencies...${NC}"
 echo -e "${BLUE}Running npm install (this may take a moment)...${NC}"
-npm install
+
+# Clear npm cache to avoid conflicts
+npm cache clean --force 2>/dev/null || true
+
+# Install dependencies
+if npm install; then
+    echo -e "${GREEN}✅ Dependencies installed successfully!${NC}"
+    
+    # Test TensorFlow.js installation
+    echo -e "${BLUE}🧪 Testing TensorFlow.js installation...${NC}"
+    if node -e "require('@tensorflow/tfjs-node')" 2>/dev/null; then
+        echo -e "${GREEN}✅ TensorFlow.js test passed!${NC}"
+    else
+        echo -e "${YELLOW}⚠️ TensorFlow.js may have compatibility issues${NC}"
+        echo -e "${BLUE}💡 If you encounter issues, run: 🔧 Fix TensorFlow Compatibility.command${NC}"
+    fi
+else
+    echo -e "${RED}❌ Some dependencies failed to install${NC}"
+    echo -e "${YELLOW}💡 You can try the TensorFlow fix script later if needed${NC}"
+fi
+
 progress_bar 4
-echo -e "${GREEN}✅ Dependencies installed successfully!${NC}"
 echo ""
 
 # Step 8: Install VS Code extensions (conditional)
