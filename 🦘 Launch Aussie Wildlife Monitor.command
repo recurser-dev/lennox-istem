@@ -22,6 +22,25 @@ fi
 echo "✅ Project files found - proceeding with launch..."
 echo ""
 
+# Check Node.js version compatibility
+NODE_VERSION=$(node --version)
+MAJOR_VERSION=$(echo $NODE_VERSION | cut -d'.' -f1 | sed 's/v//')
+
+echo "📦 Node.js version: $NODE_VERSION"
+
+if [ "$MAJOR_VERSION" -ge 24 ]; then
+    echo -e "\033[0;33m⚠️ WARNING: Node.js v24+ may have TensorFlow.js compatibility issues\033[0m"
+    echo "💡 If you encounter errors, run: 🔄 Node.js Version Fix.command"
+    echo ""
+elif [ "$MAJOR_VERSION" -eq 22 ] || [ "$MAJOR_VERSION" -eq 20 ] || [ "$MAJOR_VERSION" -eq 18 ]; then
+    echo "✅ Compatible Node.js version detected"
+    echo ""
+else
+    echo -e "\033[0;31m⚠️ Old Node.js version detected\033[0m"
+    echo "💡 Consider upgrading to Node.js v20 for best compatibility"
+    echo ""
+fi
+
 # Check for package.json changes and update dependencies if needed
 if [ ! -d "node_modules" ] || [ "package.json" -nt "node_modules" ]; then
     echo "📦 Installing/updating dependencies..."

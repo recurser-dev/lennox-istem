@@ -91,7 +91,19 @@ echo "🧪 Testing TensorFlow.js installation..."
 node -e "
 console.log('📍 Working directory:', process.cwd());
 console.log('📦 Node.js version:', process.version);
-console.log('🔍 Module resolution paths:');
+
+// Check Node.js version compatibility
+const nodeVersion = process.version;
+const majorVersion = parseInt(nodeVersion.split('.')[0].substring(1));
+
+if (majorVersion >= 24) {
+  console.log('⚠️ WARNING: Node.js v24+ has known compatibility issues with TensorFlow.js');
+  console.log('� RECOMMENDED: Downgrade to Node.js v18 or v20 for best compatibility');
+  console.log('💻 Use: nvm install 20 && nvm use 20');
+  console.log('');
+}
+
+console.log('�🔍 Module resolution paths:');
 console.log('   node_modules:', require('path').join(process.cwd(), 'node_modules'));
 
 try {
@@ -111,11 +123,15 @@ try {
   console.log('🎯 COCO-SSD model available');
 } catch (error) {
   console.log('❌ TensorFlow.js test failed:', error.message);
-  console.log('💡 This suggests a module resolution issue');
-  console.log('🔧 Possible solutions:');
-  console.log('   1. Try different Node.js version: nvm use 18 or nvm use 20');
-  console.log('   2. Check if you have conflicting global installations');
-  console.log('   3. Try the Simple TensorFlow Fix script instead');
+  console.log('💡 This suggests a Node.js version compatibility issue');
+  console.log('🔧 SOLUTION for Node.js v24+:');
+  console.log('   1. Install Node.js v20: nvm install 20 && nvm use 20');
+  console.log('   2. Or use Node.js v18: nvm install 18 && nvm use 18');
+  console.log('   3. Then re-run this fix script');
+  console.log('');
+  console.log('💡 Alternative solutions:');
+  console.log('   • Check if you have conflicting global installations');
+  console.log('   • Try the Simple TensorFlow Fix script instead');
 }
 "
 
