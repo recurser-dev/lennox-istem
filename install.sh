@@ -2,6 +2,7 @@
 
 # 🦘 Australian Wildlife Monitor - Fresh Installation Script
 # One-click setup for completely fresh computers
+# Fixed version with proper line breaks
 
 set -e  # Exit on any error
 
