@@ -3,29 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenny Penny's Australian Wildlife Monitor</title>
+    <title>🦘 Lenny Penny's Legendary Australian Wildlife Detection Station 🐨</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@300;400;600;700;800&family=Bungee&family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
-<body>
+<body class="dark-mode">
     <div class="app-container">
+        <!-- Animated Background -->
+        <div class="animated-bg">
+            <div class="floating-emoji">🦘</div>
+            <div class="floating-emoji">🐨</div>
+            <div class="floating-emoji">🦜</div>
+            <div class="floating-emoji">🦎</div>
+            <div class="floating-emoji">🐊</div>
+            <div class="floating-emoji">🦘</div>
+            <div class="floating-emoji">🐨</div>
+            <div class="floating-emoji">🦜</div>
+        </div>
+
+        <!-- Lenny Penny Character -->
+        <div class="lenny-penny-character animate__animated animate__bounceInDown">
+            <div class="speech-bubble" id="lennyText">
+                G'day mate! Ready to spot some fair dinkum Aussie wildlife? 🦘
+            </div>
+            <div class="character-avatar">
+                <div class="lenny-face">
+                    <div class="eyes">
+                        <div class="eye left-eye"></div>
+                        <div class="eye right-eye"></div>
+                    </div>
+                    <div class="mouth"></div>
+                </div>
+                <div class="aussie-hat">🏴󠁧󠁢󠁡󠁵󠁳󠁿</div>
+            </div>
+        </div>
+
         <!-- Header -->
         <header class="header">
             <div class="logo">
-                <i class="fas fa-paw"></i>
-                <h1>🦘 Lenny Penny's Australian Wildlife Monitor</h1>
+                <div class="logo-animation">
+                    <i class="fas fa-paw spinning"></i>
+                    <span class="logo-text">🦘 LENNY PENNY'S</span>
+                    <span class="logo-subtitle">LEGENDARY AUSSIE WILDLIFE DETECTION STATION</span>
+                    <span class="logo-version">v2.0 "G'day Edition"</span>
+                </div>
                 <div class="status-indicator" id="statusIndicator">
                     <div class="pulse"></div>
-                    <span>OFFLINE</span>
+                    <span>CRIKEY! WE'RE OFFLINE</span>
                 </div>
             </div>
             <div class="header-controls">
-                <button id="startBtn" class="btn btn-success">
-                    <i class="fas fa-play"></i> Start Monitoring
+                <button id="startBtn" class="btn btn-success glow-btn">
+                    <i class="fas fa-binoculars"></i> 
+                    <span>START THE WILDLIFE HUNT!</span>
+                    <div class="btn-sparkle"></div>
                 </button>
-                <button id="stopBtn" class="btn btn-danger" disabled>
-                    <i class="fas fa-stop"></i> Stop
+                <button id="stopBtn" class="btn btn-danger glow-btn" disabled>
+                    <i class="fas fa-hand"></i> 
+                    <span>STOP THE MADNESS</span>
+                </button>
+                <button id="themeBtn" class="btn btn-theme">
+                    <i class="fas fa-moon"></i>
                 </button>
             </div>
         </header>
@@ -36,138 +76,280 @@
             <section class="stream-section">
                 <div class="stream-container">
                     <div class="stream-header">
-                        <h2><i class="fas fa-video"></i> Live Webcam Feed</h2>
+                        <h2>
+                            <i class="fas fa-video pulsing"></i> 
+                            LENNY'S MAGICAL WILDLIFE DETECTION VISION
+                            <span class="aussie-flag">🇦🇺</span>
+                        </h2>
                         <div class="stream-info">
-                            <span id="fps">0 FPS</span>
-                            <span id="resolution">AI Detection</span>
+                            <div class="info-badge">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span id="fps">0 FPS</span>
+                            </div>
+                            <div class="info-badge">
+                                <i class="fas fa-robot"></i>
+                                <span id="resolution">AI POWERED</span>
+                            </div>
+                            <div class="info-badge aussie-power">
+                                <i class="fas fa-fire"></i>
+                                <span>100% AUSSIE</span>
+                            </div>
                         </div>
                     </div>
                     <div class="video-container">
                         <canvas id="videoCanvas" width="640" height="480"></canvas>
                         <div class="detection-overlay" id="detectionOverlay"></div>
                         <div class="stream-placeholder" id="streamPlaceholder">
-                            <i class="fas fa-camera"></i>
-                            <p>Click "Start Monitoring" to begin</p>
-                            <p class="subtitle">Enable webcam access for real-time detection</p>
-                            <p class="subtitle">🎯 Mock AI detection (TensorFlow.js coming soon!)</p>
+                            <div class="placeholder-content">
+                                <div class="big-camera-icon">
+                                    <i class="fas fa-camera bounce"></i>
+                                </div>
+                                <h3>Crikey! No Wildlife Yet!</h3>
+                                <p>Click "START THE WILDLIFE HUNT!" and let Lenny Penny work his magic! 🦘✨</p>
+                                <div class="placeholder-animals">
+                                    <span class="animal-icon">🦘</span>
+                                    <span class="animal-icon">🐨</span>
+                                    <span class="animal-icon">🦜</span>
+                                    <span class="animal-icon">🦎</span>
+                                </div>
+                            </div>
+                            <div class="webcam-instructions">
+                                <div class="instruction-step">
+                                    <i class="fas fa-camera-retro"></i>
+                                    <span>Fair dinkum! Enable that webcam, mate!</span>
+                                </div>
+                                <div class="instruction-step">
+                                    <i class="fas fa-robot"></i>
+                                    <span>🤖 Powered by genuine Aussie TensorFlow.js magic!</span>
+                                </div>
+                                <div class="instruction-step aussie-special">
+                                    <i class="fas fa-heart"></i>
+                                    <span>Made with love in the land down under! 🇦🇺</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Statistics Panel -->
+            <!-- Lenny's Legendary Statistics Panel -->
             <section class="stats-section">
+                <div class="section-header">
+                    <h2>🏆 LENNY'S LEGENDARY WILDLIFE SCOREBOARD 🏆</h2>
+                    <p>These stats are more reliable than a kangaroo's pouch!</p>
+                </div>
                 <div class="stats-grid">
-                    <div class="stat-card animate-card">
+                    <div class="stat-card total-detections animate-card">
                         <div class="stat-icon">
-                            <i class="fas fa-eye"></i>
+                            <i class="fas fa-search-plus bounce-slow"></i>
                         </div>
                         <div class="stat-content">
                             <h3 id="totalDetections">0</h3>
-                            <p>Total Detections</p>
+                            <p>BONZER DETECTIONS!</p>
+                            <span class="stat-subtitle">Total critters spotted</span>
                         </div>
                         <div class="stat-trend up">
-                            <i class="fas fa-arrow-up"></i>
+                            <i class="fas fa-rocket"></i>
+                            <span>RIPPER!</span>
                         </div>
                     </div>
 
-                    <div class="stat-card animate-card">
+                    <div class="stat-card animal-count animate-card">
                         <div class="stat-icon">
-                            <i class="fas fa-paw"></i>
+                            <i class="fas fa-paw spinning-slow"></i>
                         </div>
                         <div class="stat-content">
                             <h3 id="animalCount">0</h3>
-                            <p>Animals Spotted</p>
+                            <p>FAIR DINKUM ANIMALS!</p>
+                            <span class="stat-subtitle">Unique species found</span>
                         </div>
                         <div class="stat-trend">
-                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart pulsing"></i>
+                            <span>BEAUT!</span>
                         </div>
                     </div>
 
-                    <div class="stat-card animate-card">
+                    <div class="stat-card confidence-score animate-card">
                         <div class="stat-icon">
-                            <i class="fas fa-percent"></i>
+                            <i class="fas fa-trophy golden"></i>
                         </div>
                         <div class="stat-content">
                             <h3 id="confidence">0%</h3>
-                            <p>Avg Confidence</p>
+                            <p>LENNY'S CONFIDENCE!</p>
+                            <span class="stat-subtitle">AI accuracy rating</span>
                         </div>
-                        <div class="stat-trend">
-                            <i class="fas fa-brain"></i>
+                        <div class="stat-trend aussie-pride">
+                            <i class="fas fa-brain pulsing"></i>
+                            <span>CRIKEY!</span>
                         </div>
                     </div>
 
-                    <div class="stat-card animate-card">
+                    <div class="stat-card uptime-card animate-card">
                         <div class="stat-icon">
-                            <i class="fas fa-clock"></i>
+                            <i class="fas fa-stopwatch spinning"></i>
                         </div>
                         <div class="stat-content">
                             <h3 id="uptime">00:00</h3>
-                            <p>Monitoring Time</p>
+                            <p>LENNY'S WATCH TIME!</p>
+                            <span class="stat-subtitle">How long we've been hunting</span>
                         </div>
                         <div class="stat-trend">
-                            <i class="fas fa-stopwatch"></i>
+                            <i class="fas fa-coffee"></i>
+                            <span>CHOCKERS!</span>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Lenny's Fun Facts -->
+                <div class="fun-facts-panel">
+                    <h3>🧠 LENNY'S AUSSIE WILDLIFE FACTS!</h3>
+                    <div class="rotating-facts" id="rotatingingFacts">
+                        <p>🦘 Kangaroos can't walk backwards - just like me with technology!</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Animal Detection Panel -->
+            <!-- Lenny's Amazing Animal Detection Log -->
             <section class="detection-section">
                 <div class="detection-panel">
                     <div class="panel-header">
-                        <h2><i class="fas fa-search"></i> Recent Detections</h2>
+                        <h2>
+                            <i class="fas fa-clipboard-list bounce"></i> 
+                            LENNY'S AMAZING ANIMAL SPOTTING LOG!
+                            <span class="excitement">🎉</span>
+                        </h2>
                         <div class="detection-filter">
-                            <button class="filter-btn active" data-filter="all">All</button>
-                            <button class="filter-btn" data-filter="kangaroo">Kangaroos</button>
-                            <button class="filter-btn" data-filter="koala">Koalas</button>
-                            <button class="filter-btn" data-filter="wombat">Wombats</button>
-                            <button class="filter-btn" data-filter="dingo">Dingoes</button>
-                            <button class="filter-btn" data-filter="kookaburra">Kookaburras</button>
-                            <button class="filter-btn" data-filter="cockatoo">Cockatoos</button>
+                            <button class="filter-btn active aussie-btn" data-filter="all">
+                                <i class="fas fa-globe-oceania"></i> All Mates
+                            </button>
+                            <button class="filter-btn aussie-btn" data-filter="kangaroo">
+                                🦘 Roos
+                            </button>
+                            <button class="filter-btn aussie-btn" data-filter="koala">
+                                🐨 Koalas
+                            </button>
+                            <button class="filter-btn aussie-btn" data-filter="wombat">
+                                🧸 Wombats
+                            </button>
+                            <button class="filter-btn aussie-btn" data-filter="dingo">
+                                🐕 Dingoes
+                            </button>
+                            <button class="filter-btn aussie-btn" data-filter="kookaburra">
+                                🦜 Kookas
+                            </button>
+                            <button class="filter-btn aussie-btn" data-filter="cockatoo">
+                                🦜 Cockies
+                            </button>
                         </div>
                     </div>
                     <div class="detections-list" id="detectionsList">
                         <div class="no-detections">
-                            <i class="fas fa-search"></i>
-                            <p>No animals detected yet...</p>
-                            <p class="subtitle">Start monitoring to see Lenny Penny's friends!</p>
+                            <div class="lenny-waiting">
+                                <div class="waiting-animation">
+                                    <i class="fas fa-binoculars shake"></i>
+                                </div>
+                                <h3>Crikey! Lenny's still looking!</h3>
+                                <p>No fair dinkum animals spotted yet, mate...</p>
+                                <p class="subtitle">🔍 Start monitoring and watch the magic happen!</p>
+                                <div class="waiting-animals">
+                                    <span class="waiting-animal">🦘</span>
+                                    <span class="waiting-animal">🐨</span>
+                                    <span class="waiting-animal">🦜</span>
+                                    <span class="waiting-animal">🦎</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Activity Chart -->
+            <!-- Lenny's Super Duper Activity Chart -->
             <section class="chart-section">
                 <div class="chart-container">
-                    <h2><i class="fas fa-chart-line"></i> Activity Timeline</h2>
+                    <h2>
+                        <i class="fas fa-chart-line bounce"></i> 
+                        LENNY'S BONZER ACTIVITY TIMELINE! 
+                        <span class="chart-emoji">📊🦘</span>
+                    </h2>
                     <div class="chart" id="activityChart">
                         <div class="chart-placeholder">
-                            <i class="fas fa-chart-area"></i>
-                            <p>Activity data will appear here once monitoring starts</p>
+                            <div class="chart-icon">
+                                <i class="fas fa-chart-area pulsing"></i>
+                            </div>
+                            <h3>Fair dinkum! No data yet!</h3>
+                            <p>Lenny's activity charts will be more exciting than a barbie on Australia Day!</p>
+                            <div class="chart-preview">
+                                <div class="preview-bar"></div>
+                                <div class="preview-bar"></div>
+                                <div class="preview-bar"></div>
+                                <div class="preview-bar"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
 
+        <!-- Lenny's Aussie Footer -->
+        <footer class="aussie-footer">
+            <div class="footer-content">
+                <div class="footer-lenny">
+                    <div class="footer-character">🦘</div>
+                    <div class="footer-text">
+                        <h3>G'day from Lenny Penny!</h3>
+                        <p>"This little ripper of an app was made with more love than a joey in its mum's pouch!"</p>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>🇦🇺 Proudly Australian</h4>
+                        <p>Made in the land down under with fair dinkum code!</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>🤖 Powered By</h4>
+                        <p>TensorFlow.js • WebRTC • Aussie Magic ✨</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>🦘 Wildlife Count</h4>
+                        <p id="footerWildlifeCount">0 crikey detections and counting!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lenny Penny's Wildlife Detection Station • "She'll be right, mate!" 🦘</p>
+                <div class="aussie-pride">
+                    <span>🇦🇺</span>
+                    <span>Made with ❤️ in Australia</span>
+                    <span>🇦🇺</span>
+                </div>
+            </div>
+        </footer>
+
         <!-- Floating Lenny Penny Character -->
-        <div class="lenny-character" id="lennyCharacter">
+        <div class="lenny-character floating-lenny" id="lennyCharacter">
             <div class="character-body">
                 <div class="character-face">
-                    <div class="eye left"></div>
-                    <div class="eye right"></div>
-                    <div class="nose"></div>
-                    <div class="mouth"></div>
+                    <div class="eye left blink"></div>
+                    <div class="eye right blink"></div>
+                    <div class="nose twitch"></div>
+                    <div class="mouth happy"></div>
                 </div>
                 <div class="character-ears">
-                    <div class="ear left"></div>
-                    <div class="ear right"></div>
+                    <div class="ear left wiggle"></div>
+                    <div class="ear right wiggle"></div>
                 </div>
             </div>
-            <div class="speech-bubble" id="speechBubble">
-                <p>Ready to monitor the burrow! 🏠</p>
+            <div class="character-tail">
+                <div class="tail bounce"></div>
             </div>
+        </div>
+
+        <!-- Lenny's Message Bubble -->
+        <div class="lenny-message-bubble" id="lennyMessageBubble" style="display: none;">
+            <div class="bubble-content">
+                <p id="lennyMessage">Click me for some fair dinkum Aussie wisdom! 🦘</p>
+            </div>
+            <div class="bubble-tail"></div>
         </div>
 
         <!-- Notification Toast -->
@@ -182,5 +364,161 @@
     <!-- Scripts -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
+    <script>
+        // Enhanced Lenny Penny interactions
+        const lennyCharacter = document.getElementById('lennyCharacter');
+        const lennyBubble = document.getElementById('lennyMessageBubble');
+        const lennyMessage = document.getElementById('lennyMessage');
+        
+        const aussieWisdom = [
+            "G'day mate! Looking for some native Aussie wildlife? You've come to the right billabong! 🦘",
+            "Fair dinkum! This camera can spot a joey from a mile away! 🐨",
+            "Crikey! More animals than you can poke a stick at! 🦎",
+            "She'll be right mate! Just point the camera and watch the magic happen! ✨",
+            "Stone the flamin' crows! Look at all these bonzer detections! 🦜",
+            "Strewth! This AI is sharper than a crocodile's tooth! 🐊",
+            "Too right! Spotting wildlife like a true blue Aussie! 🇦🇺",
+            "Beauty! More accurate than a boomerang's return flight! 🪃",
+            "Bloody oath! This is better than a barbie on Australia Day! 🔥",
+            "Ripper detection! You little beauty! 🌟"
+        ];
+        
+        let currentWisdomIndex = 0;
+        
+        function showLennyWisdom() {
+            lennyMessage.textContent = aussieWisdom[currentWisdomIndex];
+            lennyBubble.style.display = 'block';
+            lennyBubble.classList.add('animate__animated', 'animate__bounceIn');
+            
+            currentWisdomIndex = (currentWisdomIndex + 1) % aussieWisdom.length;
+            
+            setTimeout(() => {
+                lennyBubble.classList.remove('animate__bounceIn');
+                lennyBubble.classList.add('animate__fadeOut');
+                setTimeout(() => {
+                    lennyBubble.style.display = 'none';
+                    lennyBubble.classList.remove('animate__fadeOut');
+                }, 500);
+            }, 4000);
+        }
+        
+        lennyCharacter.addEventListener('click', showLennyWisdom);
+        
+        // Auto-show wisdom every 15 seconds
+        setInterval(showLennyWisdom, 15000);
+        
+        // Enhanced floating emoji system
+        function createFloatingEmoji() {
+            const emojis = ['🦘', '🐨', '🦜', '🦎', '🐊', '🇦🇺', '✨', '🌟', '⭐', '💚'];
+            const emoji = document.createElement('div');
+            emoji.className = 'emoji';
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = '-50px';
+            emoji.style.top = Math.random() * 100 + '%';
+            emoji.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            emoji.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
+            
+            document.querySelector('.floating-emojis').appendChild(emoji);
+            
+            setTimeout(() => {
+                emoji.remove();
+            }, 25000);
+        }
+        
+        // Create floating emojis periodically
+        setInterval(createFloatingEmoji, 2000);
+        
+        // Initialize with some emojis
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createFloatingEmoji, i * 1000);
+        }
+        
+        // Fun facts rotation
+        const funFacts = [
+            "Did ya know? Kangaroos can't walk backwards - just like this app, always moving forward! 🦘",
+            "Crikey! Koalas sleep 22 hours a day - talk about living the dream! 🐨",
+            "Fair dinkum! Wombat poop is cube-shaped - nature's got a sense of humor! 🟫",
+            "Stone the crows! Australia has more venomous snakes than anywhere else! 🐍",
+            "Too right! Platypuses are one of only two mammals that lay eggs! 🥚",
+            "Bloody oath! A group of kangaroos is called a mob - how Aussie is that! 👥",
+            "She'll be right! Echidnas and platypuses are the only mammals with electroreception! ⚡",
+            "Ripper fact! Australia is home to 21 of the world's 25 most venomous snakes! 😱"
+        ];
+        
+        let currentFactIndex = 0;
+        const factDisplay = document.querySelector('.fact-text');
+        
+        function rotateFunFacts() {
+            if (factDisplay) {
+                factDisplay.style.opacity = '0';
+                setTimeout(() => {
+                    factDisplay.textContent = funFacts[currentFactIndex];
+                    factDisplay.style.opacity = '1';
+                    currentFactIndex = (currentFactIndex + 1) % funFacts.length;
+                }, 300);
+            }
+        }
+        
+        // Rotate facts every 8 seconds
+        setInterval(rotateFunFacts, 8000);
+        
+        // Initialize first fact
+        if (factDisplay) {
+            factDisplay.textContent = funFacts[0];
+            currentFactIndex = 1;
+        }
+        
+        // Enhanced detection log with Aussie comments
+        function addAussieComment(animal, confidence) {
+            const comments = {
+                high: [
+                    "Crikey! That's a bonzer detection!",
+                    "Fair dinkum! Spotted like a true blue Aussie!",
+                    "Stone the flamin' crows! What a ripper!",
+                    "Too right! Sharp as a tack!",
+                    "Beauty! You little ripper!"
+                ],
+                medium: [
+                    "She'll be right! Pretty decent spot!",
+                    "Not too shabby, mate!",
+                    "Getting warmer, cobber!",
+                    "On the right track, mate!",
+                    "Fair dinkum effort!"
+                ],
+                low: [
+                    "Having a bit of a squiz, are we?",
+                    "Close but no cigar, mate!",
+                    "Give it another burl!",
+                    "Nearly there, cobber!",
+                    "Practice makes perfect, mate!"
+                ]
+            };
+            
+            let category = 'low';
+            if (confidence > 0.8) category = 'high';
+            else if (confidence > 0.5) category = 'medium';
+            
+            const commentList = comments[category];
+            return commentList[Math.floor(Math.random() * commentList.length)];
+        }
+        
+        // Update wildlife count in footer
+        function updateWildlifeCount(count) {
+            const footerCount = document.getElementById('footerWildlifeCount');
+            if (footerCount) {
+                footerCount.textContent = `${count} crikey detections and counting!`;
+            }
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🦘 Lenny Penny\'s Wildlife Detection Station is ready to go!');
+            
+            // Add some initial floating emojis
+            for (let i = 0; i < 8; i++) {
+                setTimeout(createFloatingEmoji, i * 500);
+            }
+        });
+    </script>
 </body>
 </html>
